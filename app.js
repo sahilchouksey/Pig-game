@@ -62,7 +62,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 document.querySelector('.btn-new').addEventListener('click', init);
 
 
-function nextPlayer() { //DRY(don't repeat yourself) function
+function nextPlayer() { 
   //ternary operator
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
   roundScore = 0;
@@ -74,30 +74,22 @@ function nextPlayer() { //DRY(don't repeat yourself) function
   document.querySelector('.player-1-panel').classList.toggle('active');
 
   document.querySelector('.dice').style.display = 'none';
-  // document.querySelector('.player-0-panel').classList.remove('active');
-  // document.querySelector('.player-1-panel').classList.add('active');
 }
 
-function init() { //initialize // start our game / code
-  // reset active score,player
+function init() { 
   scores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
   gamePlaying = true;
-
   document.querySelector('.dice').style.display = 'none';
-
   document.getElementById('score-0').textContent = '0';
   document.getElementById('score-1').textContent = '0';
   document.getElementById('current-0').textContent = '0';
   document.getElementById('current-1').textContent = '0';
-  //remove winner cls
   document.querySelector('.player-0-panel').classList.remove('winner');
   document.querySelector('.player-1-panel').classList.remove('winner');
-  //set players name
   document.getElementById('name-0').textContent = 'Player 1';
   document.getElementById('name-1').textContent = 'Player 2';
-  //remove active class and set it to player-0 bcoz as soon as player clicks on new game player 1 will be the active player
   document.querySelector('.player-0-panel').classList.remove('active');
   document.querySelector('.player-1-panel').classList.remove('active');
   document.querySelector('.player-0-panel').classList.add('active');
