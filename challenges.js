@@ -3,10 +3,10 @@
 var scores, roundScore, activePlayer, gamePlaying;
 var input, winningScore;
 init();
-var lastDiceRoll;
+var lastDice1Roll, lastDice2Roll;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-  if (gamePlaying) {
+    if (gamePlaying) {
     //1. generate ramdom number
 
     var dice1 = Math.floor(Math.random() * 6) + 1;
@@ -19,17 +19,26 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
   document.getElementById('dice-1').src = 'dice-' + dice1 + '.png';
   document.getElementById('dice-2').src = 'dice-' + dice2 + '.png';
 
-  if (dice1 !== 1 && dice2 !== 1) {
+  if (dice1 === 6 && lastDice1Roll === 6 || dice2 === 6 && lastDice2Roll === 6) {
+
+  //player looses scores
+  scores[activePlayer] = 0;
+  document.getElementById('score-' + activePlayer).textContent = '0';
+dice1 = 0;
+  dice2 = 0; // If not set and '6' rolls again, next players loses score.
+  nextPlayer();
+  } else if (dice1 !== 1 && dice2 !== 1) {
     //add score
     //roundScore = roundScore + dice;
     roundScore += dice1 + dice2;
 
     document.querySelector('#current-' + activePlayer).textContent = roundScore;
 
-  } else {
+  }  else {
     //next player
     nextPlayer();
   }
+
     // update the round score IF the rolled number was not a 1
     //if (dice < 1)
     /* if (dice1 === 6 && lastDiceRoll === 6) {
@@ -51,7 +60,11 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
     lastDiceRoll = dice1;
     */
+
+lastDice1Roll = dice1;
+lastDice2Roll = dice2;
   }
+
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
