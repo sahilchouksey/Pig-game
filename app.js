@@ -2,7 +2,7 @@ let roundScore,scores,activePlayer,dice1,dice2,diceCls,dices,winingScore,gamePla
 const city = prompt(`TESTING: What is the name of your city?`)
 async function getWeatherByCityNameAW(cityName) {
   try {
-    const result = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=f7ef49a864c475c207cc4fef0c662dc5`);
+    const result = await fetch(`https://api.allorigins.win/raw?url=http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=f7ef49a864c475c207cc4fef0c662dc5`);
     const data = await result.json();
     const today = data.main;
     alert(`   Temperatures today in ${data.name} stay between ${today.temp_min - 273.15} and ${today.temp_max - 273.15}. 
